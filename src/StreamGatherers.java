@@ -7,7 +7,7 @@ public class StreamGatherers {
         IO.println("Welcome to Java 25");
 
         Stream<Integer> numbers = Stream.of(1, 2, 3, 4, 5);
-        Stream folded = numbers.gather(Gatherers.fold(() -> 0, Integer::sum));
+        Stream<Integer> folded = numbers.gather(Gatherers.fold(() -> 0, Integer::sum));
         List<Integer> resultList = folded.toList();
         System.out.println(resultList);
 
@@ -20,5 +20,7 @@ public class StreamGatherers {
         List<List<Integer>> resultList3 = numbers1.gather(Gatherers.windowSliding(3))
                 .toList();
         IO.println(resultList3);
+
+
     }
 }
