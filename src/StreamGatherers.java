@@ -1,4 +1,5 @@
 import java.util.List;
+import java.util.stream.Gatherer;
 import java.util.stream.Gatherers;
 import java.util.stream.Stream;
 
@@ -21,6 +22,14 @@ public class StreamGatherers {
                 .toList();
         IO.println(resultList3);
 
+        List<Integer> expectedOutput1 = List.of(5, 6, 3);
+        Stream<String> inputStrings = Stream.of("apple", "banana", "cat");
+        List<Object> resultList4 = inputStrings.gather(Gatherer.of((state, element, downstream) -> {
+                    downstream.push(element.length());
+                    return true;
+                }))
+                .toList();
+        IO.println(resultList4);
 
     }
 }
