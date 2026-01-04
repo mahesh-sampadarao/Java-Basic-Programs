@@ -139,6 +139,14 @@ public class UsingStreamAPIOnEmployeeObjects {
         Integer[] array = myListVar.stream().filter(s -> !set.add(s)).toArray(Integer[]::new);
         System.out.println(Arrays.toString(array));
 
+        int[] inputArray = IntStream.range(1, 21).toArray();
+        Integer[] binaryNumbers = Arrays.stream(inputArray).boxed().map(Integer::toBinaryString).map(Integer::parseInt).toArray(Integer[]::new);
+        Integer[] octalNumbers = Arrays.stream(inputArray).boxed().map(Integer::toOctalString).map(Integer::parseInt).toArray(Integer[]::new);
+        String[] hexaDecimalNumbers = Arrays.stream(inputArray).boxed().map(Integer::toHexString).toArray(String[]::new);
+        System.out.println(Arrays.toString(binaryNumbers));
+        System.out.println(Arrays.toString(octalNumbers));
+        System.out.println(Arrays.toString(hexaDecimalNumbers));
+
         Stream<Long> fibonacci = Stream.iterate(
                         new long[]{0, 1}, f -> new long[]{f[1], f[0] + f[1]})
                 .map(f -> f[0]);
