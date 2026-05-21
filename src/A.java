@@ -1,4 +1,5 @@
 import java.util.Arrays;
+import java.util.Optional;
 
 interface C {
     default void show() {
@@ -19,7 +20,7 @@ interface B {
 public class A implements C, B {
 
     public static void main(String arg[]) {
-        display((Object)null); //Reference should be casted to know which method to call.
+        display(Optional.ofNullable(null)); //Reference should be casted to know which method to call.
         A a=new A();
         a.show();
 
