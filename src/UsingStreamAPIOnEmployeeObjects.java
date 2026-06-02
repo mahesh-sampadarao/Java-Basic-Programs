@@ -1,4 +1,6 @@
 import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
 import java.time.temporal.ChronoUnit;
 import java.util.*;
 import java.util.concurrent.CompletableFuture;
@@ -195,9 +197,17 @@ public class UsingStreamAPIOnEmployeeObjects {
         LocalDate today = LocalDate.now();
 
         System.out.println(ChronoUnit.YEARS.between(birthDay, today));
+        IO.println(ChronoUnit.DAYS.between(birthDay, today));
+
+        //Convert default local UTC to any specific time zone
+        LocalDateTime newYorkTimeNow= LocalDateTime.now(ZoneId.of("America/New_York"));
+        IO.println(newYorkTimeNow);
 
         String s = "1s2u3m4a";
-        List<String> list1 = Pattern.compile("(\\d+)").splitAsStream(s).toList();
+        List<String> list1 = Pattern.compile("(\\d+)").splitAsStream(s)
+                .filter(u->!u.isBlank())
+                //.filter(Predicate.not(String::isBlank)) //Another Way
+                .toList();
         System.out.println(list1);
 
         int[] arr12 = {3, 4, 4, 2, 1, 2, 3, 4};
