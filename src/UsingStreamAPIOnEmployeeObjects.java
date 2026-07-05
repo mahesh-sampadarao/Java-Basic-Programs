@@ -186,6 +186,14 @@ public class UsingStreamAPIOnEmployeeObjects {
         String[] arrString=String.valueOf(number).split("");
         System.out.println(Arrays.toString(arrString));
 
+        //Filtering nonNull Strings
+        String[] wordArray={"Java"," ","Python","C#",null,"","C++","C","Ruby","JavaScript"};
+        String[] outputWordArrays = Arrays.stream(wordArray)
+                .filter(Objects::nonNull)
+                .filter(s->!s.isBlank())
+                .toArray(String[]::new);
+        System.out.println(Arrays.toString(outputWordArrays));
+
         //Using Strings only.
         String sumString=Arrays.stream(arrString).reduce("0",(n1,n2)-> String.valueOf(Integer.parseInt(n1)+Integer.parseInt(n2)));
         System.out.println("The sum is : "+sumString);
@@ -238,6 +246,13 @@ public class UsingStreamAPIOnEmployeeObjects {
             //list.remove(s);
         }
         System.out.println(list4);
+
+        String stringBlock= "Java is Fun and Java is Cool. Java is Powerful!";
+        //Remove Special Characters and convert them into a Array of Strings
+        String[] stringBlockWithoutSpecialSymbols=Arrays.stream(stringBlock
+                .replaceAll("[^a-zA-Z\\s]","")
+                .split(" ")).toArray(String[]::new);
+        IO.println(Arrays.toString(stringBlockWithoutSpecialSymbols));
 
         //Apexon
         String userNames = "Uma Maheshwar Rao Sampadarao";
